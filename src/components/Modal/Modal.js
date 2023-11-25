@@ -1,3 +1,6 @@
+// import { ModalBasic } from 'react-modal';
+
+
 // export const Modal = () => {
 //     return {<div class="overlay">
 //   <div class="modal">
