@@ -1,42 +1,62 @@
-// import { Component } from 'react';
+import { Component } from 'react';
 
-import { Item, Image} from "./ImageGalleryItem.styled";
+import { Item, Image } from './ImageGalleryItem.styled';
+import { ImgModal } from 'components/Modal/Modal';
+// import Modal from 'react-modal';
+// const customStyles = {
+//   content: {
+//     top: '50%',
+//     left: '50%',
+//     right: 'auto',
+//     bottom: 'auto',
+//     marginRight: '-50%',
+//     transform: 'translate(-50%, -50%)',
+//   },
+// };
+// Modal.setAppElement('#root');
 
-// import { Modal } from "./Modal/Modal"
-// export class ImageGalleryItem extends Component {
-//   state = {
-//     isModalOpen: false,
-//   };
-//   toggleModal = () => {
-//     this.setState(prevState => ({
-//       isModalOpen: !prevState.isModalOpen,
-//     }));
-//   };
-//   openModal = () => {
-//     this.setState({
-//       isModalOpen: true,
-//     });
-//   };
+export class ImageGalleryItem extends Component {
+  state = {
+    isModalOpen: false,
+  };
+  // toggleModal = () => {
+  //   this.setState(prevState => ({
+  //     isModalOpen: !prevState.isModalOpen,
+  //   }));
+  // };
+  openModal = () => {
+    this.setState({
+      isModalOpen: true,
+    });
+  };
 
-//   closeModal = () => {
-//     this.setState({
-//       isModalOpen: false,
-//     });
-//   };
+  closeModal = () => {
+    this.setState({
+      isModalOpen: false,
+    });
+  };
 
-//   render() {
-//     const { isModalOpen } = this.state;
-//     return (
-//       <li onClick={this.toggleModal}>
-//         <img src="" alt="" />
-//         {isModalOpen && <h1>Modal!!!</h1>}
-//       </li>
-//     );
-//   }
-// }
-// largeImageURL 
-export const ImageGalleryItem = ({ image, tags }) => (
-  <Item>
-    <Image src={image} alt={tags} />
-  </Item>
-);
+  render() {
+    const { isModalOpen } = this.state;
+    const { image, tags, largeImage } = this.props;
+
+    return (
+      <Item onClick={this.openModal}>
+        <Image src={image} alt={tags} />
+        <ImgModal
+          isOpen={isModalOpen}
+          onClose={this.closeModal}
+          tags={tags}
+          image={largeImage}
+        />
+      </Item>
+    );
+  }
+}
+// largeImageURL
+// export const ImageGalleryItem = ({ image, tags }) => (
+//   <Item>
+//     <Image src={image} alt={tags} />
+//   </Item>
+
+// );
