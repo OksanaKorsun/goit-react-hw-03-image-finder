@@ -1,11 +1,18 @@
-// // import { ColorRing } from  'react-loader-spinner'
-// // <ColorRing
-// //   visible={true}
-// //   height="100"
-// //   width="100"
-// //   ariaLabel="blocks-loading"
-// //   wrapperStyle={{}}
-// //   wrapperClass="blocks-wrapper"
-// //   colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-// // />
-// {/* <span class="loader"></span> */}
+import { ThreeCircles } from 'react-loader-spinner';
+import { CenteredLoader } from './Loader.styled';
+export const Loader = () => (
+  <CenteredLoader>
+    <ThreeCircles
+      height="170"
+      width="170"
+      color="#3f51b5"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      ariaLabel="three-circles-rotating"
+      outerCircleColor=""
+      innerCircleColor=""
+      middleCircleColor=""
+    />
+  </CenteredLoader>
+);

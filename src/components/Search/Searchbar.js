@@ -1,5 +1,7 @@
 import { Component } from 'react';
-import { SearchHeader, SearchForm, SearchButton, SearchIcon, SearchInput } from './Searchbar.styled';
+import { SearchHeader, SearchForm, SearchButton, SearchInput } from './Searchbar.styled';
+import { IoIosSearch } from 'react-icons/io';
+
 export class Searchbar extends Component {
   state = {
     searchImage: '',
@@ -24,7 +26,7 @@ export class Searchbar extends Component {
       <SearchHeader>
         <SearchForm onSubmit={this.handleSubmit}>
           <SearchButton type="submit">
-            <SearchIcon>Search</SearchIcon>
+            <IoIosSearch size="25"/>
           </SearchButton>
 
           <SearchInput

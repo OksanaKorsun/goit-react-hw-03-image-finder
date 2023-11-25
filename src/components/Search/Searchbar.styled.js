@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 // import { Form as FormikForm, Field as FormikField } from 'formik';
 export const SearchHeader = styled.header`
   top: 0;
@@ -34,7 +35,6 @@ export const SearchButton = styled.button`
   width: 48px;
   height: 48px;
   border: 0;
-  /* background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg'); */
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -46,18 +46,6 @@ export const SearchButton = styled.button`
     opacity: 1;
   }
 `;
-export const SearchIcon = styled.span`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
-`;
-
 export const SearchInput = styled.input`
   display: inline-block;
   width: 100%;
@@ -65,8 +53,8 @@ export const SearchInput = styled.input`
   font-size: 20px;
   border: none;
   outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
   &::placeholder {
     font: inherit;
     font-size: 18px;

@@ -5,7 +5,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Search/Searchbar';
 import { fetchImages } from 'services/api';
 import { Container } from './App.styled';
-// import {Loader} from "./Loader/Loader"
+import { Loader } from "./Loader/Loader";
 
 export class App extends Component {
   state = {
@@ -63,7 +63,7 @@ export class App extends Component {
       <Container>
         <Searchbar onSubmit={this.handleSubmit}></Searchbar>
         {error && <p>Whoops, something went wrong: {error.message}</p>}
-        {isLoading && <p> Loading ...</p>}
+        {isLoading && <Loader/>}
         {images.length > 0 && <ImageGallery images={images}></ImageGallery>}
 
         {images.length > 0 && <Button onClick={this.handleLoadMore}></Button>}
