@@ -1,24 +1,29 @@
 import { Component } from 'react';
-import { SearchHeader, SearchForm, SearchButton, SearchInput } from './Searchbar.styled';
+import {
+  SearchHeader,
+  SearchForm,
+  SearchButton,
+  SearchInput,
+} from './Searchbar.styled';
 import { IoIosSearch } from 'react-icons/io';
+import toast from 'react-hot-toast';
 
 export class Searchbar extends Component {
   state = {
     searchImage: '',
   };
-   searchValueChange = event => {
+  searchValueChange = event => {
     this.setState({ searchImage: event.currentTarget.value.toLowerCase() });
-    
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    // if (this.state.searchImgName.trim() === '') {
-    //   return toast.error('Write name for search');
-    // }
+    if (this.state.searchImage.trim() === '') {
+      toast.error('Please enter a query in the search field.');
+      return;
+    }
     this.props.onSubmit(this.state.searchImage);
     this.setState({ searchImage: '' });
-     
   };
   render() {
     const { searchImage } = this.state;
@@ -26,7 +31,7 @@ export class Searchbar extends Component {
       <SearchHeader>
         <SearchForm onSubmit={this.handleSubmit}>
           <SearchButton type="submit">
-            <IoIosSearch size="25"/>
+            <IoIosSearch size="25" />
           </SearchButton>
 
           <SearchInput

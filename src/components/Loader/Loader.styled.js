@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-export const CenteredLoader = styled.div`
+export const FormatedLoader = styled.div`
   position: fixed;
-  top: 50%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;

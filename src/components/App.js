@@ -5,7 +5,8 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Search/Searchbar';
 import { fetchImages } from 'services/api';
 import { Container } from './App.styled';
-import { Loader } from "./Loader/Loader";
+import { Loader } from './Loader/Loader';
+import toast, { Toaster } from 'react-hot-toast';
 
 export class App extends Component {
   state = {
@@ -24,14 +25,26 @@ export class App extends Component {
     ) {
       try {
         const timeId = Date.now();
-        const { query, page } = this.state;
+        const { query, page, totalPages } = this.state;
         const searchQwery = query.slice(String(timeId).length + 1);
         this.setState({ isLoading: true, error: false });
         const findImages = await fetchImages(searchQwery, page);
-        this.setState({
-          images: findImages.hits,
-          totalPages: Math.ceil(findImages.totalHits / 12),
-        });
+        if (findImages.totalHits === 0) {
+          toast.error(
+            'Sorry, there are no images matching your search query. Please try again.'
+          );
+          return;
+        }
+
+        if (findImages.hits.length) {
+          this.setState({
+            images: [...prevState.images, ...findImages.hits],
+            totalPages: Math.ceil(findImages.totalHits / 12),
+          });
+          if (page >= totalPages) {
+            toast.info('No more images to load.');
+          }
+        }
       } catch (error) {
         this.setState({ error: true });
       } finally {
@@ -39,6 +52,7 @@ export class App extends Component {
       }
     }
   }
+
   handleLoadMore = () => {
     this.setState(prevState => {
       return {
@@ -58,16 +72,17 @@ export class App extends Component {
   };
 
   render() {
-    const { images, isLoading, error } = this.state;
+    const { images, isLoading, page, error, totalPages } = this.state;
     return (
       <Container>
         <Searchbar onSubmit={this.handleSubmit}></Searchbar>
-        {error && <p>Whoops, something went wrong: {error.message}</p>}
-        {isLoading && <Loader/>}
+        {error && <p>{error}</p>}
+        {isLoading && <Loader />}
         {images.length > 0 && <ImageGallery images={images}></ImageGallery>}
 
-        {images.length > 0 && <Button onClick={this.handleLoadMore}></Button>}
+        {page < totalPages && <Button onClick={this.handleLoadMore}></Button>}
         <GlobalStyle />
+        <Toaster />
       </Container>
     );
   }

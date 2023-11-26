@@ -28,11 +28,11 @@ export const ImgModal = ({ isOpen, onClose, image, tags }) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
+      shouldCloseOnOverlayClick={true}
       style={customStyles}
       contentLabel="Image Modal"
     >
-      <img src={image} alt={tags} width="1000" height="700"/>
+      <img src={image} alt={tags} width="1000" height="700" />
     </Modal>
   );
 };
-
