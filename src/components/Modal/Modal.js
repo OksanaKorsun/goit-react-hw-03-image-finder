@@ -19,6 +19,9 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    padding: 0,
+    border: 'none'
+
   },
 };
 Modal.setAppElement('#root');
@@ -32,7 +35,7 @@ export const ImgModal = ({ isOpen, onClose, image, tags }) => {
       style={customStyles}
       contentLabel="Image Modal"
     >
-      <img src={image} alt={tags} width="1000" height="700" />
+      <img src={image} alt={tags} width="1050" height="700" />
     </Modal>
   );
 };

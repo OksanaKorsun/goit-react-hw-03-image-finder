@@ -13,7 +13,7 @@ export class Searchbar extends Component {
     searchImage: '',
   };
   searchValueChange = event => {
-    this.setState({ searchImage: event.currentTarget.value.toLowerCase() });
+    this.setState({ searchImage: event.target.value.toLowerCase() });
   };
 
   handleSubmit = event => {

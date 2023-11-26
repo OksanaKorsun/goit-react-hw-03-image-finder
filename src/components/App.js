@@ -37,9 +37,11 @@ export class App extends Component {
         }
 
         if (findImages.hits.length) {
-          this.setState({
-            images: [...prevState.images, ...findImages.hits],
-            totalPages: Math.ceil(findImages.totalHits / 12),
+          this.setState(prevState => {
+            return {
+              images: [...prevState.images, ...findImages.hits],
+              totalPages: Math.ceil(findImages.totalHits / 12),
+            };
           });
           if (page >= totalPages) {
             toast.info('No more images to load.');
