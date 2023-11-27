@@ -24,9 +24,10 @@ export class App extends Component {
       prevState.page !== this.state.page
     ) {
       try {
-        const timeId = Date.now();
+        // const timeId = Date.now();
         const { query, page, totalPages } = this.state;
-        const searchQwery = query.slice(String(timeId).length + 1);
+        // const searchQwery = query.slice(String(timeId).length + 1);
+        const searchQwery = query.split('/').pop();
         this.setState({ isLoading: true, error: false });
         const findImages = await fetchImages(searchQwery, page);
         if (findImages.totalHits === 0) {
