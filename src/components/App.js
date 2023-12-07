@@ -25,7 +25,7 @@ export class App extends Component {
     ) {
       try {
         // const timeId = Date.now();
-        const { query, page, totalPages } = this.state;
+        const { query, page } = this.state;
         // const searchQwery = query.slice(String(timeId).length + 1);
         const searchQwery = query.split('/').pop();
         this.setState({ isLoading: true, error: false });
@@ -36,7 +36,6 @@ export class App extends Component {
           );
           return;
         }
-
         if (findImages.hits.length) {
           this.setState(prevState => {
             return {
@@ -44,9 +43,9 @@ export class App extends Component {
               totalPages: Math.ceil(findImages.totalHits / 12),
             };
           });
-          if (page >= totalPages) {
-            toast.info('No more images to load.');
-          }
+        }
+        if (page >= Math.ceil(findImages.totalHits / 12)) {
+          toast('No more images to load.');
         }
       } catch (error) {
         this.setState({ error: true });
@@ -85,7 +84,7 @@ export class App extends Component {
 
         {page < totalPages && <Button onClick={this.handleLoadMore}></Button>}
         <GlobalStyle />
-        <Toaster />
+        <Toaster position="top-right" reverseOrder={false} />
       </Container>
     );
   }
